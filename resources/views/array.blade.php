@@ -8,12 +8,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] dark:text-[#fbfbfb] flex flex-col min-h-full font-sans antialiased">
+<body class="bg-[#FDFDFC] text-[#1b1b18] flex flex-col min-h-full font-sans antialiased">
 
-    <header class="border-b border-gray-100 dark:border-[#222] py-4 px-6 lg:px-8">
+    <header class="border-b border-gray-100 py-4 px-6 lg:px-8">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <span class="text-xl font-bold tracking-wider uppercase text-[#FF2D20]">MySite</span>
+                <span class="text-xl font-bold tracking-wider uppercase text-[#FF2D20]">Лучший сайт лучших людей для лучших людей про лучших людей</span>
             </div>
 
             <nav class="flex items-center gap-6">
@@ -26,7 +26,7 @@
     <main class="flex-grow max-w-6xl w-full mx-auto py-12 px-6 lg:px-8]">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach ($products as $product)
-            <div class="bg-white dark:bg-[#111] border border-gray-100 dark:border-[#222] rounded-xl overflow-hidden shadow-sm flex flex-col p-4">
+            <div class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm flex flex-col p-4">
 
                 <img src="{{ Vite::asset('resources/images/' . $product['path']) }}" alt="{{ $product['title'] }}" class="w-full h-48 object-cover rounded-lg mb-4">
 
@@ -57,12 +57,12 @@
 
     </main>
 
-    <footer class="border-t border-gray-100 dark:border-[#222] py-6 px-6 lg:px-8 text-sm text-gray-500 dark:text-gray-500">
+    <footer class="border-t border-gray-100 py-6 px-6 lg:px-8 text-sm text-gray-500">
         <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-                &copy; {{ date('Y') }} Все права защищены.
+                &copy; 2026 Все права защищены.
             </div>
-            <div class="font-medium text-gray-700 dark:text-gray-400">
+            <div class="font-medium text-gray-700">
                 Заярцев Антон Валерьевич
             </div>
         </div>
