@@ -13,6 +13,10 @@ class MainController extends Controller
         ['id' => 4, 'title' => 'продукт 4', 'price' => 3500, 'path' => 'Loutre2.jpg'] 
     ]; 
 
+    public function showIndex() {
+        return view('home');
+    }
+
 
     public function showArray()
     {
