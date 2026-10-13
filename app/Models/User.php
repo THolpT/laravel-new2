@@ -29,4 +29,12 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function fullname() {
+        return $this->lastname . " " . $this->name . " " . $this->middlename;
+    }
+
+    public function reports() {
+        return $this->hasMany(Report::class);
+    }
 }
