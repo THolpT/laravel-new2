@@ -18,21 +18,21 @@
             </style>
     @endif
 </head>
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] p-6 lg:p-8 min-h-screen flex items-center flex-col">
+<body class="bg-[#FDFDFC] text-[#1b1b18] p-6 lg:p-8 min-h-screen flex items-center flex-col">
     
-    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 dark:border-zinc-800 pb-4 w-[100%]">
-        <h1 class="text-xl font-bold dark:text-white">Список заявок</h1>
+    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 pb-4 w-[100%]">
+        <h1 class="text-xl font-bold">Список заявок</h1>
         <a href="{{ route('reports.create') }}" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 rounded-lg shadow-sm">
             Создать заявку
         </a>
     </div>
 
-    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 dark:border-zinc-800 pb-4 w-[100%]">
+    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 pb-4 w-[100%]">
         <a href="{{ route('reports.index', ['sort' => 'desc', 'status' => $status]) }}">Сначала новые</a>
         <a href="{{ route('reports.index', ['sort' => 'asc', 'status' => $status]) }}">Сначала старые</a>
     </div>
 
-    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 dark:border-zinc-800 pb-4 w-[100%]">
+    <div class="mx-auto flex justify-between items-center mb-8 border-b border-gray-100 pb-4 w-[100%]">
         @foreach ($statuses as $status)
             <a href="{{route('reports.index', ['status' => $status->id]) }}"> {{ $status->name }} </a>
         @endforeach
@@ -41,39 +41,39 @@
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($reports as $r)
-            <div class="bg-white dark:bg-zinc-900 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-zinc-800 p-6 flex flex-col justify-between">
+            <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 p-6 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-zinc-500">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">
                             Номер #{{ $r->number }}
                         </span>
-                        <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50">
+                        <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                             {{ $r->status?->name }}
                         </span>
                     </div>
                     
-                    <p class="text-gray-700 dark:text-zinc-300 text-base leading-relaxed mb-6 line-clamp-3">
+                    <p class="text-gray-700 text-base leading-relaxed mb-6 line-clamp-3">
                         {{ $r->description }}
                     </p>
                 </div>
 
-                <div class="border-t border-gray-100 dark:border-zinc-800 pt-4 mt-auto flex items-center justify-between">
+                <div class="border-t border-gray-100 pt-4 mt-auto flex items-center justify-between">
                     <div class="flex flex-col">
-                        <span class="text-sm font-medium text-gray-600 dark:text-zinc-400">
+                        <span class="text-sm font-medium text-gray-600">
                             {{ $r->user?->fullname() }}
                         </span>
                         <span class="text-[10px] text-gray-400 uppercase tracking-wider">Автор</span>
                     </div>
 
                     <div class="flex items-center gap-2">
-                        <a href="{{ route('reports.edit', $r->id) }}" class="text-xs font-medium text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 bg-amber-50 hover:bg-amber-100 dark:bg-amber-950/30 dark:hover:bg-amber-950/50 px-3 py-1.5 rounded-lg transition-colors duration-200">
+                        <a href="{{ route('reports.edit', $r->id) }}" class="text-xs font-medium text-amber-600 hover:text-amber-700 bg-amber-50 hover:bg-amber-100 px-3 py-1.5 rounded-lg transition-colors duration-200">
                             Изменить
                         </a>
 
                         <form action="{{ route('reports.destroy', $r->id) }}" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить эту заявку?');">
                             @method('delete')
                             @csrf
-                            <button type="submit" class="text-xs font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-950/30 dark:hover:bg-red-950/50 px-3 py-1.5 rounded-lg transition-colors duration-200">
+                            <button type="submit" class="text-xs font-medium text-red-600 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-lg transition-colors duration-200">
                                 Удалить
                             </button>
                         </form>

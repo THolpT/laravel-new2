@@ -19,13 +19,13 @@
     @endif
 </head>
 
-<body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] p-6 lg:p-8 min-h-screen flex items-center justify-center">
+<body class="bg-[#FDFDFC] text-[#1b1b18] p-6 lg:p-8 min-h-screen flex items-center justify-center">
 
-    <div class="w-full max-w-md bg-white dark:bg-zinc-900 rounded-xl shadow-md border border-gray-100 dark:border-zinc-800 p-6 sm:p-8">
+    <div class="w-full max-w-md bg-white rounded-xl shadow-md border border-gray-100 p-6 sm:p-8">
         
         <div class="mb-6 flex justify-between items-center">
-            <h2 class="text-xl font-bold dark:text-white">Редактирование заявки</h2>
-            <a href="{{ route('reports.index') }}" class="text-sm text-gray-500 hover:text-blue-600 dark:text-zinc-400 dark:hover:text-blue-400 transition-colors">
+            <h2 class="text-xl font-bold">Редактирование заявки</h2>
+            <a href="{{ route('reports.index') }}" class="text-sm text-gray-500 hover:text-blue-600 transition-colors">
                 Назад к списку
             </a>
         </div>
@@ -35,7 +35,7 @@
             @method('PUT')
 
             <div>
-                <label for="number" class="block text-sm font-medium text-gray-700 dark:text-zinc-300 mb-1.5">
+                <label for="number" class="block text-sm font-medium text-gray-700 mb-1.5">
                     Номер заявки
                 </label>
                 <input 
@@ -45,12 +45,12 @@
                     value="{{ old('number', $report->number) }}"
                     required
                     placeholder="Например, 1024"
-                    class="w-full px-3.5 py-2 text-sm bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder-gray-400 dark:placeholder-zinc-500"
+                    class="w-full px-3.5 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder-gray-400"
                 >
             </div>
 
             <div>
-                <label for="description" class="block text-sm font-medium text-gray-700 dark:text-zinc-300 mb-1.5">
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-1.5">
                     Описание проблемы
                 </label>
                 <textarea 
@@ -59,7 +59,7 @@
                     rows="4" 
                     required
                     placeholder="Подробно опишите суть вашей заявки..."
-                    class="w-full px-3.5 py-2 text-sm bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder-gray-400 dark:placeholder-zinc-500 resize-none"
+                    class="w-full px-3.5 py-2 text-sm bg-gray-50 border border-gray-200 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all placeholder-gray-400 resize-none"
                 >{{ $report->description }}</textarea>
             </div>
 

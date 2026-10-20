@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Models\Status;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -20,10 +21,15 @@ class ReportController extends Controller
         }
 
         if ($validate) {
-            $reports = Report::where('status_id', $status)->orderBy('created_at', $sort)->paginate(8);
+            $reports = Report::where('status_id', $status)
+            ->where('user_id', Auth::user()->id)
+            ->orderBy('created_at', $sort)
+            ->paginate(8);
         }
         else {
-            $reports = Report::orderBy('created_at', $sort)->paginate(8);
+            $reports = Report::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', $sort)
+            ->paginate(8);
         }
 
         $statuses = Status::all();
@@ -48,14 +54,19 @@ class ReportController extends Controller
             'description' => 'string',
         ]);
 
+        $report['status_id'] = 1;
+        $report['user_id'] = Auth::user()->id;
         $report->create($data);
         return redirect()->route('reports.index');
     }
 
     public function edit(Report $report) {
-        $statuses = Status::all();
-
-        return view('report.edit', compact('statuses', 'report'));
+        if (Auth::user()->id === $report->user_id) {
+        return view('report.edit', compact('report'));
+        }
+        else {
+            abort(403, "У вас недостаточно прав");
+        }
     }
 
     public function update(Request $request, Report $report) {
