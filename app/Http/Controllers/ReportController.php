@@ -44,6 +44,8 @@ class ReportController extends Controller
     }
 
     public function destroy(Report $report) {
+        if (Auth::user()->id !== $report->user_id) abort(403, "У вас недостаточно прав");
+        
         $report->delete();
         return redirect()->back();
     }
@@ -54,8 +56,8 @@ class ReportController extends Controller
             'description' => 'string',
         ]);
 
-        $report['status_id'] = 1;
-        $report['user_id'] = Auth::user()->id;
+        $data['status_id'] = 1;
+        $data['user_id'] = Auth::id();
         $report->create($data);
         return redirect()->route('reports.index');
     }
@@ -70,6 +72,8 @@ class ReportController extends Controller
     }
 
     public function update(Request $request, Report $report) {
+        if (Auth::user()->id !== $report->user_id) abort(403, "У вас недостаточно прав");
+
         $data = $request->validate([
             'number' => 'string',
             'description' => 'string'
