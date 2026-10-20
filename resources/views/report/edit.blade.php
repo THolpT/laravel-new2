@@ -50,29 +50,6 @@
             </div>
 
             <div>
-                <label for="status_id" class="block text-sm font-medium text-gray-700 dark:text-zinc-300 mb-1.5">
-                    Статус
-                </label>
-                <div class="relative">
-                    <select 
-                        name="status_id" 
-                        id="status_id" 
-                        required
-                        class="w-full px-3.5 py-2 text-sm bg-gray-50 dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all appearance-none"
-                    >
-                        @foreach($statuses as $status)
-                            <option value="{{ $status->id }}" {{ $report->status_id == $status->id ? 'selected' : '' }}>
-                                {{ $status->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 dark:text-zinc-400">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </div>
-            </div>
-
-            <div>
                 <label for="description" class="block text-sm font-medium text-gray-700 dark:text-zinc-300 mb-1.5">
                     Описание проблемы
                 </label>

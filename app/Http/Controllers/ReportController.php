@@ -8,10 +8,27 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
-    public function index() {
-        $reports = Report::all();
+    public function index(Request $request) {
+        $sort = $request->input('sort');
+        $status = $request->input('status');
+        $validate = $request->validate([
+            'status' => "exists:statuses,id"
+        ]);
 
-        return view('report.index', compact('reports'));
+        if($sort != 'asc' && $sort != 'desc') {
+            $sort = 'desc';
+        }
+
+        if ($validate) {
+            $reports = Report::where('status_id', $status)->orderBy('created_at', $sort)->paginate(8);
+        }
+        else {
+            $reports = Report::orderBy('created_at', $sort)->paginate(8);
+        }
+
+        $statuses = Status::all();
+
+        return view('report.index', compact('reports', 'statuses', 'sort', 'status'));
     }
 
     public function create() {
@@ -29,10 +46,8 @@ class ReportController extends Controller
         $data = $request->validate([
             'number' => 'string',
             'description' => 'string',
-            'status_id' => 'Integer'
         ]);
 
-        $data['user_id'] = 1;
         $report->create($data);
         return redirect()->route('reports.index');
     }
@@ -46,8 +61,7 @@ class ReportController extends Controller
     public function update(Request $request, Report $report) {
         $data = $request->validate([
             'number' => 'string',
-            'description' => 'string',
-            'status_id' => 'Integer'
+            'description' => 'string'
         ]);
 
         $report->update($data);
